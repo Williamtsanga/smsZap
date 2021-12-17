@@ -1,0 +1,25 @@
+{
+  "name": "smsdev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Williamtsanga/smsZap.git"
+  },
+  "keywords": [
+    "sms"
+  ],
+  "author": "williamtsanga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Williamtsanga/smsZap/issues"
+  },
+  "homepage": "https://github.com/Williamtsanga/smsZap#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
