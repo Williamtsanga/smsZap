@@ -1,0 +1,11 @@
+<div class="gap"></div>
+<div class="container">
+    <form (ngSubmit)="addcontact($event)">
+        <mat-form-field appearance="fill">
+            <mat-label>Enter Number</mat-label>
+            <input matInput required>
+            <mat-icon matSuffix> contact_mail</mat-icon>
+        </mat-form-field>
+        <button type="submit" class="btn-space" mat-raised-button color="primary" > ADD </button>
+    </form>
+</div>
