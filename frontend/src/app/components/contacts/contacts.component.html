@@ -1,0 +1,38 @@
+<div class="gap"></div>
+<div class="container">
+    <mat-form-field>
+        <input  (keyup) = "filtercontacts($any($event.target).value)" matInput placeholder="Filter Contacts...">
+    </mat-form-field>
+    <div>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+            <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="phone_number">
+                <th style="text-align:center !important;padding-left:25%" mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </th>
+                <td class="th-center" mat-cell *matCellDef="let element"> 
+                    <span class="td-element"> {{element.phone_number}} </span>
+                    <span class="td-botton"> <button mat-fab color="warn" (click)="deleteContact(element.phone_number, element.name)"><mat-icon>delete</mat-icon></button> </span>
+                </td>
+            </ng-container>
+
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+        </table>
+        <div class="mat-elevation-z8" >
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+            showFirstLastButtons 
+            aria-label="Select page of contacts">
+            </mat-paginator>
+        </div>
+    </div>
+      
+</div>
+
+   

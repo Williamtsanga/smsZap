@@ -1,0 +1,7 @@
+.zap-tool-items{
+   margin-left: 50px;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
