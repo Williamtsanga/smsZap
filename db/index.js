@@ -25,10 +25,19 @@ module.exports = {
     return await dbConnection.collection("users")
     .insertOne({username,password,email})
   },
-  getContacts: async ({user_id}) => {
-
+  getContacts: async (user_id) => {
+    return await dbConnection.collection('contacts').find({user_id}).toArray();
   },
   getUsers: async () => {
     return await dbConnection.collection("users").find({}).toArray()
+  },
+  getAllMessages: async (user_id) => {
+    return await dbConnection.collection('messages').find({user_id}).toArray();
+  },
+  getContactMessages: async (user_id,contact_id) => {
+    return await dbConnection.collection('messages').find({user_id,contact_id}).toArray();
+  },
+  getUser: async (username) => {
+    return await dbConnection.collection("users").findOne({username});
   }
 };
