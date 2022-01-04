@@ -3,7 +3,7 @@
     <form (ngSubmit)="addcontact($event)">
         <mat-form-field appearance="fill">
             <mat-label>Username</mat-label>
-            <input matInput required>
+            <input matInput required type="text">
             <mat-icon matSuffix> contact_mail</mat-icon>
             <input matInput required>
         </mat-form-field><br>
@@ -11,7 +11,7 @@
             <mat-label>Enter Number</mat-label>
             <input matInput required>
             <mat-icon matSuffix> contact_mail</mat-icon>
-            <input matInput required>
+            <input matInput required type="number">
         </mat-form-field>
         <button type="submit" class="btn-space" mat-raised-button color="primary" > ADD </button>
     </form>
