@@ -4,32 +4,24 @@
         <mat-card-title>Register</mat-card-title>
       </mat-card-header>
   
-      <form class="example-form">
+      <form class="example-form" (ngSubmit)="Register($event)">
   
         <mat-card-content>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username">
+            <input matInput placeholder="Username" required [(ngModel)] = "username" name="username">
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width" required>
+            <input matInput placeholder="Email" [(ngModel)] = "email" name="email" required>
           </mat-form-field>
   
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email">
-          </mat-form-field>
-  
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password">
-          </mat-form-field>
-  
-          <mat-form-field class="example-full-width">
-            <mat-label>Choose a role...</mat-label>
-            <mat-select>
-              <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
-              </mat-option>
-            </mat-select>
+            <input matInput placeholder="Password" required [(ngModel)] = "password" name="password">
           </mat-form-field>
   
         </mat-card-content>
   
-        <button mat-stroked-button color="accent" class="btn-block">Register</button>
+        <button type="submit" mat-stroked-button color="accent" class="btn-block">Register</button>
   
       </form>
     </mat-card>

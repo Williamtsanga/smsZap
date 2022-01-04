@@ -1,17 +1,35 @@
-<!-- Toolbar -->
-<mat-toolbar color="primary" class="app-header">
-    <div>
-      <a routerLink="" routerLinkActive="active" class="positronx">SMSZAP</a>
-      <span class="zap-tool-items">
-        <a mat-button routerLink="contacts" routerLinkActive="active"> My Contacts </a>
-        <a mat-button routerLink="add-contact" routerLinkActive="active"> Add Contact </a>
-        <a mat-button routerLink="messages" routerLinkActive="active"> Messages </a>
-        <a mat-button routerLink="send-message" routerLinkActive="active"> Send Message</a>
-      </span>
-    </div>
-    <span class="nav-tool-items">
-      <a mat-button routerLink="login" routerLinkActive="active">Log in</a>
-      <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a>
-    </span>
-  </mat-toolbar>
   
+<mat-toolbar color="primary">
+
+  <button mat-button routerLink="">
+  <mat-icon>home</mat-icon> 
+      SMSZAP</button>
+      <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <span class="zap-tool-items">
+          <a mat-button routerLink="contacts" routerLinkActive="active"> My Contacts </a>
+          <a mat-button routerLink="add-contact" routerLinkActive="active"> Add Contact </a>
+          <a mat-button routerLink="messages" routerLinkActive="active"> Messages </a>
+          <a mat-button routerLink="send-message" routerLinkActive="active"> Send Message</a>
+        </span>
+      </div> 
+
+  <span class="fill-remaining-space"></span>
+
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <h2 *ngIf="showusername"> Signed in as: {{user.username}}</h2>
+    <a mat-button routerLink="login" routerLinkActive="active">Log in</a>
+    <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a>
+  </div>
+  <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+   <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu x-position="before" #menu="matMenu">
+  <a mat-menu-item  routerLink="login" routerLinkActive="active">Log in</a>
+  <a mat-menu-item  routerLink="register" routerLinkActive="active">Register</a>
+  <a mat-menu-item routerLink="contacts" routerLinkActive="active"> My Contacts </a>
+  <a mat-menu-item  routerLink="add-contact" routerLinkActive="active"> Add Contact </a>
+  <a mat-menu-item  routerLink="messages" routerLinkActive="active"> Messages </a>
+  <a mat-menu-item routerLink="send-message" routerLinkActive="active"> Send Message</a>
+</mat-menu>

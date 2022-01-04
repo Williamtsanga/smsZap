@@ -24,10 +24,6 @@ body {
   height: 100%;
 }
 
-.positronx {
-  text-decoration: none;
-  color: #ffffff;
-}
 
 .box {
   position: relative;
@@ -107,7 +103,7 @@ body {
 }
 
 .gap{
-  margin-bottom: 100px;
+  margin-bottom: 25px;
 }
 
 .container{

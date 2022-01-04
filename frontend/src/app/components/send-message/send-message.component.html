@@ -1,1 +1,18 @@
-<p>send-message works!</p>
+<div class="gap"></div>
+<div class="container centralize">
+    <form #sendMessageForm="ngForm" (ngSubmit)="sendMessage($event)">
+        <mat-form-field appearance="fill">
+            <mat-label>Contact <mat-icon matSuffix>account_circle</mat-icon></mat-label>
+            <mat-select [(value)]="contact">
+              <mat-option *ngFor="let contact of contacts" [value]="contact">{{contact.name}} - {{contact.phone_number}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    <br>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>SMS</mat-label>
+            <textarea rows = "10" name="content" matInput [(ngModel)] = "content"></textarea>
+        </mat-form-field>
+    <br>
+        <button type="submit" class="btn-space" mat-raised-button color="primary" > Send </button>
+    </form>
+</div>

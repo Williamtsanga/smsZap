@@ -7,6 +7,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import {MessagesComponent } from './components/messages/messages.component';
 import {AddContactComponent } from './components/add-contact/add-contact.component';
 import {SendMessageComponent } from './components/send-message/send-message.component';
+import {AppComponent} from './app.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'contacts' },

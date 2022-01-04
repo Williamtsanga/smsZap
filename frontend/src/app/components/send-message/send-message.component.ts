@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from '../../services/message.service';
+import { ContactService } from '../../services/contact.service';
+import { ContactInterface } from '../../contact-interface'
+import {MessageInterface} from '../../message-interface'
+import {Router} from "@angular/router"
+
 
 @Component({
   selector: 'app-send-message',
@@ -6,10 +12,45 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./send-message.component.css']
 })
 export class SendMessageComponent implements OnInit {
+  contact: ContactInterface;
+  content: string = '';
+  contacts: ContactInterface[] = [];
+  message: MessageInterface = {
+    to: 0,
+    content: '',
+    date: '',
+  };
 
-  constructor() { }
+  constructor(private contactService: ContactService, private messageService: MessageService,  private router: Router) { }
 
   ngOnInit(): void {
+    this.contactService.getContacts().subscribe((contacts) => {this.contacts = contacts})
+  }
+
+  sendMessage(event: Event): void {
+
+
+    if(!this.contact){
+      alert('Please Select a Contact');
+      return;
+    }
+
+    if(!this.content){
+      alert('Please Enter Message');
+      return;
+    }
+    
+    var today = new Date();
+    this.message.to = this.contact.phone_number;
+    this.message.content = this.content
+    this.message.date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    this.messageService.sendMessage(this.message).subscribe((message) => {console.log(message)})
+
+    this.content = '';
+    this.contactService.getContacts().subscribe((contacts) => {this.contacts = contacts})
+    alert('sms has been sent to '+this.message.to);
+    this.router.navigate(['messages']);
+
   }
 
 }

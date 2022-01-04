@@ -1,8 +1,35 @@
 table {
-    width: 60%;
-  }
+  width: 100%;
+}
 
 .pgstyle{
-    width: 60%;
+  width: 60%;
 }
-  
+
+.w-75{
+  width: 75px;
+}
+
+.w-100{
+  width: 100px;
+}
+
+.th-center{
+  text-align: center;
+}
+.th-left{
+  text-align: left;
+}
+.th-right{
+  text-align: right;
+}
+.td-element{
+  position: relative;
+  top: 25px;
+}
+.td-botton{
+  justify-content: flex-end;
+  display: flex;
+  position: relative;
+  bottom: 12px;
+}
