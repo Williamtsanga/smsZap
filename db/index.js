@@ -6,35 +6,29 @@ const client = new MongoClient(connectionString, {
 });
 
 let dbConnection = null;
-// dbo.connectToServer(function (err) {
-//     if (err) {
-//       console.error(err);
-//       process.exit();
-//     }
-  
-//     // start the Express server
-//     app.listen(PORT, () => {
-//       console.log(`Server is running on port: ${PORT}`);
-//     });
-//   });
+
 module.exports = {
   connectToServer: function (callback) {
-    let see = client.connect(function (err, db) {
+    client.connect(function (err, db) {
       if (err || !db) {
         return callback(err);
       }
 
       dbConnection = db.db("smsZap");
       console.log("Successfully connected to MongoDB.");
-    console.log("here" , dbConnection)
 
-      return "callback()";
+      return callback();
     });
-    console.log('see   => ' , see)
-    return "dbConnection";
   },
+  register: async ({username,password,email}) => {
 
-  getDb: function () {
-    return dbConnection;
+    return await dbConnection.collection("users")
+    .insertOne({username,password,email})
   },
+  getContacts: async ({user_id}) => {
+
+  },
+  getUsers: async () => {
+    return await dbConnection.collection("users").find({}).toArray()
+  }
 };
