@@ -47,13 +47,6 @@ export const sendSMS = async (userId:string,contact:string,message:string) => {
   export const findUser = async (params : {username?:string,email?:string,phone?:string}) => {
     return await dbConnection.collection("users").findOne({$and : [{...params}]});
   }
-// export const setPasswordResetToken = async (token:string,email:string) => {
-//     return await dbConnection.collection("passwordReset").insertOne({token,email,expireAt: new Date().getTime() + 2592000000});
-//   }
-  // export const findPasswordResetToken = async (token:string) => {
-  //   return await dbConnection.collection("passwordReset").findOne({token});
-  // }
   export const resetPassword = async (email:string,newPassword:string) => {
-    // dbConnection.collection("passwordReset").deleteOne({token})
     return await dbConnection.collection("users").findOneAndUpdate({email} , {$set: {password:newPassword}});
   }
