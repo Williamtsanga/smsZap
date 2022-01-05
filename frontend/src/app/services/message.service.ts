@@ -3,6 +3,14 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {MessageInterface} from '../message-interface'
 
+export interface Minterface {
+  _id: string;
+  userId: string;
+  contact: string;
+  message: string;
+  createdAt: string;
+}
+
 const httpOptions = {
   headers: new HttpHeaders({ 
     'Content-Type': 'application/json '
@@ -17,10 +25,10 @@ export class MessageService {
 
   constructor(private http:HttpClient) { }
 
-  getMessages(){
+  getMessages(): Observable<Minterface[]> {
 
     const url = `/api/messages/all`;
-    return this.http.get(url);
+    return this.http.get<Minterface[]>(url);
 
   }
 

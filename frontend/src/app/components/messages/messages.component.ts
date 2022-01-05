@@ -23,7 +23,7 @@ export interface Minterface {
 
 export class MessagesComponent implements OnInit {
 
-  messages: MessageInterface[] = [];
+  messages: Minterface[] = [];
   displayedColumns: string[] = ['to', 'content', 'date'];
   dataSource = new MatTableDataSource(this.messages);
 
@@ -47,7 +47,7 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.MessageService.getMessages().subscribe((data) => {console.log(data)
-      this.dataSource = new MatTableDataSource(this.messages);})
+      this.dataSource = new MatTableDataSource(data);})
     
   }
 

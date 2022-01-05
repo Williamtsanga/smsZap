@@ -8,18 +8,18 @@
 
             <ng-container matColumnDef="to">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> To </th>
-            <td mat-cell *matCellDef="let element"> {{element.to}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.contact}} </td>
             </ng-container>
 
 
             <ng-container matColumnDef="content">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Content </th>
-                <td style="padding:15px !important" mat-cell *matCellDef="let element"> {{element.content}} </td>
+                <td style="padding:15px !important" mat-cell *matCellDef="let element"> {{element.message}} </td>
             </ng-container>
 
             <ng-container matColumnDef="date">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-                <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
             </ng-container>
 
         
