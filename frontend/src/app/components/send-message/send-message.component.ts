@@ -5,6 +5,11 @@ import { ContactInterface } from '../../contact-interface'
 import {MessageInterface} from '../../message-interface'
 import {Router} from "@angular/router"
 
+export interface Cinterface {
+  name: string;
+  phone: string;
+}
+
 
 @Component({
   selector: 'app-send-message',
@@ -12,11 +17,11 @@ import {Router} from "@angular/router"
   styleUrls: ['./send-message.component.css']
 })
 export class SendMessageComponent implements OnInit {
-  contact: ContactInterface;
+  contact: Cinterface;
   content: string = '';
-  contacts: ContactInterface[] = [];
+  contacts: Cinterface[] = [];
   message: MessageInterface = {
-    to: 0,
+    to: '0',
     content: '',
     date: '',
   };
@@ -24,7 +29,8 @@ export class SendMessageComponent implements OnInit {
   constructor(private contactService: ContactService, private messageService: MessageService,  private router: Router) { }
 
   ngOnInit(): void {
-    this.contactService.getContacts().subscribe((data) => {console.log(data)})
+    this.contactService.getContacts().subscribe((data) => {console.log(data)
+    this.contacts = data})
   }
 
   sendMessage(event: Event): void {
@@ -41,7 +47,7 @@ export class SendMessageComponent implements OnInit {
     }
     
     var today = new Date();
-    this.message.to = this.contact.phone_number;
+    this.message.to = this.contact.phone;
     this.message.content = this.content
     this.message.date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     this.messageService.sendMessage(this.message).subscribe((data) => {console.log(data)})

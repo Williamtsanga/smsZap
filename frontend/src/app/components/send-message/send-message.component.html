@@ -4,7 +4,7 @@
         <mat-form-field appearance="fill">
             <mat-label>Contact <mat-icon matSuffix>account_circle</mat-icon></mat-label>
             <mat-select [(value)]="contact">
-              <mat-option *ngFor="let contact of contacts" [value]="contact">{{contact.name}} - {{contact.phone_number}}</mat-option>
+              <mat-option *ngFor="let contact of contacts" [value]="contact">{{contact.name}} - {{contact.phone}}</mat-option>
             </mat-select>
         </mat-form-field>
     <br>

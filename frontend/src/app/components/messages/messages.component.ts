@@ -6,11 +6,21 @@ import {MatPaginator} from '@angular/material/paginator';
 import { MessageService } from '../../services/message.service'
 import {MessageInterface} from '../../message-interface'
 
+export interface Minterface {
+  _id: string;
+  userId: string;
+  contact: string;
+  message: string;
+  createdAt: string;
+}
+
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.css']
 })
+
+
 export class MessagesComponent implements OnInit {
 
   messages: MessageInterface[] = [];
@@ -36,8 +46,9 @@ export class MessagesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.MessageService.getMessages().subscribe((data) => {console.log(data)})
-    this.dataSource = new MatTableDataSource(this.messages);
+    this.MessageService.getMessages().subscribe((data) => {console.log(data)
+      this.dataSource = new MatTableDataSource(this.messages);})
+    
   }
 
   filtermessages(filterData: string){
