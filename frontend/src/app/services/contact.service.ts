@@ -37,23 +37,18 @@ export class ContactService {
 
   getContacts(){
 
-    const url = `${this.apiUrl}/api/contacts`;
-    this.http.get(url);
+    const url = `${this.apiUrl}/api/contacts/getAll`;
+    return this.http.get(url);
 
-    const contacts = of(ELEMENT_DATA);
-    return contacts;
   }
 
   addContact(contact: ContactInterface) {
 
     const url = `${this.apiUrl}/api/contacts/add`;
-    this.http.post(url,
+    return this.http.post(url,
        {"name": contact.name, 
        "phone": contact.phone_number,
        }, httpOptions);
-
-    const addedContact = of(contact);
-    return addedContact;
   }
 
   deleteContact(contact: ContactInterface): Observable<ContactInterface>{

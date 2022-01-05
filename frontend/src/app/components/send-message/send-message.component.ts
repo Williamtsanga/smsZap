@@ -24,7 +24,7 @@ export class SendMessageComponent implements OnInit {
   constructor(private contactService: ContactService, private messageService: MessageService,  private router: Router) { }
 
   ngOnInit(): void {
-    this.contactService.getContacts().subscribe((contacts) => {this.contacts = contacts})
+    this.contactService.getContacts().subscribe((data) => {console.log(data)})
   }
 
   sendMessage(event: Event): void {
@@ -44,10 +44,10 @@ export class SendMessageComponent implements OnInit {
     this.message.to = this.contact.phone_number;
     this.message.content = this.content
     this.message.date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    this.messageService.sendMessage(this.message).subscribe((message) => {console.log(message)})
+    this.messageService.sendMessage(this.message).subscribe((data) => {console.log(data)})
 
     this.content = '';
-    this.contactService.getContacts().subscribe((contacts) => {this.contacts = contacts})
+    this.contactService.getContacts().subscribe((data) => {console.log(data)})
     alert('sms has been sent to '+this.message.to);
     this.router.navigate(['messages']);
 

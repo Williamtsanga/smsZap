@@ -36,9 +36,9 @@ export class LogInComponent implements OnInit {
 
     this.user.username = this.username;
     this.user.password = this.password;
-    this.userService.logIn(this.user).subscribe((user) => {
-      console.log(user.username)
-      localStorage.setItem('User', JSON.stringify(user))});
+    this.userService.logIn(this.user).subscribe((data) => {
+      console.log(data)
+      localStorage.setItem('User', JSON.stringify(data))});
     this.router.navigate(['']).then(() => {
       window.location.reload();
     });

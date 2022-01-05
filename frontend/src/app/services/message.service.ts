@@ -3,6 +3,11 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {MessageInterface} from '../message-interface'
 
+const httpOptions = {
+  headers: new HttpHeaders({ 
+    'Content-Type': 'application/json '
+  })
+}
 
 const ELEMENT_DATA: MessageInterface[] = [
   {to: 67898765678, content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', date: '12-04-2021'},
@@ -24,16 +29,24 @@ const ELEMENT_DATA: MessageInterface[] = [
   providedIn: 'root'
 })
 export class MessageService {
+  private apiUrl = '';
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
-  getMessages(): Observable<MessageInterface[]> {
-    const messages = of(ELEMENT_DATA);
-    return messages;
+  getMessages(){
+
+    const url = `${this.apiUrl}/api/messages/all`;
+    return this.http.get(url);
+
   }
 
-  sendMessage(message: MessageInterface): Observable<MessageInterface> {
-    const sentMessage = of(message);
-    return sentMessage
+  sendMessage(message: MessageInterface){
+
+    const url = `${this.apiUrl}/api/messages/send`;
+    return this.http.post(url,
+       {"message": message.content, 
+       "contact": message.to,
+       }, httpOptions);
+
   }
 }

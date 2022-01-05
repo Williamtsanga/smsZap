@@ -21,59 +21,53 @@ export class UserService {
 
   user: UserInterface = {
     username: '',
-    password: ''
-  };
-  user1: PasswordInterface = {
-    username: '',
-    email: ''
-  };
-  user2: ResetInterface = {
-    
     password: '',
     email: ''
   };
-
 
   constructor(private http: HttpClient) { }
 
   logIn(user: UserInterface) {
 
-    const url = `${this.apiUrl}/api/login`;
-    this.http.post(url,
+    const url = `${this.apiUrl}/api/user/login`;
+    return this.http.post(url,
        {"username": user.username, 
        "password": user.password,
        }, httpOptions);
     
-   const loggedUser = of(user);
-   return loggedUser;
   }
 
-  Reset(user: ResetInterface): Observable<ResetInterface> {
-    const loggedUser = of(user);
-    localStorage.setItem('User', JSON.stringify(user))
-    return loggedUser;
+  Reset(user: UserInterface){
+
+    const url = `${this.apiUrl}/api/passwordReset`;
+    return this.http.post(url,
+       {"email": user.email, 
+       "password": user.password,
+       }, httpOptions);
+
    }
 
-  ForgetPassword(user1: PasswordInterface): Observable<PasswordInterface> {
-    const loggedUser = of(user1);
-    localStorage.setItem('User1', JSON.stringify(user1))
-    return loggedUser;
+  forgotPassword(user: UserInterface){
+
+    const url = `${this.apiUrl}/api/passwordReset`;
+    return this.http.post(url,
+       {"username": user.username, 
+       "password": user.password,
+       }, httpOptions);
    }
 
   Register(user: UserInterface) {
 
-    const url = `${this.apiUrl}/api/register`;
-    this.http.post(url,
+    const url = `${this.apiUrl}/api/user/register`;
+    return this.http.post(url,
        {"username": user.username, 
        "password": user.password,
        "email": user.email,
        "phone": user.phone}, httpOptions);
-    
-    const registeredUser = of(user);
-    return registeredUser;
+  
   }
 
-  getUser(): Observable<UserInterface> {
+  getUser(){
     
     if(localStorage.getItem('User')){
       return of(JSON.parse(localStorage.getItem('User') || '{}'));

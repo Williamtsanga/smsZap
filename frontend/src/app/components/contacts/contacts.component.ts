@@ -39,7 +39,7 @@ export class ContactsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.contactService.getContacts().subscribe((contacts) => {this.contacts = contacts})
+    this.contactService.getContacts().subscribe((data) => {console.log(data)})
     this.dataSource = new MatTableDataSource(this.contacts);
   }
 
@@ -52,7 +52,7 @@ export class ContactsComponent implements OnInit {
       name: name,
       phone_number: Number(phone_number)
     }
-    this.contactService.deleteContact(contact).subscribe((contact) => {console.log(contact)})
+    this.contactService.deleteContact(contact).subscribe((data) => {console.log(data)})
     }
 
 }

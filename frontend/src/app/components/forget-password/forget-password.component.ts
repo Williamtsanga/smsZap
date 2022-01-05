@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { PasswordInterface } from '../../password-interface';
 import {Router} from "@angular/router"
+import { UserInterface } from 'src/app/user-interface';
 
 @Component({
   selector: 'app-forget-password',
@@ -13,9 +13,10 @@ export class ForgetPasswordComponent implements OnInit {
 
   username: string = '';
   email: string = '';
-  user: PasswordInterface = {
+  user: UserInterface = {
     username: '',
-    email: ''
+    email: '',
+    password: ''
   };
   
   constructor(private userService: UserService, private router: Router) { }
@@ -23,21 +24,21 @@ export class ForgetPasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ForgetPassword(event: Event){
+  forgotPassword(event: Event){
     if(!this.username){
       alert('Please Enter Username');
       return;
     }
 
     if(!this.email){
-      alert('Please Enter emaail');
+      alert('Please Enter Emaail');
       return;
     }
 
     this.user.username = this.username;
     this.user.email = this.email;
-    this.userService.ForgetPassword(this.user).subscribe((user) => {console.log(user.username)});
-    this.router.navigate(['']).then(() => {
+    this.userService.forgotPassword(this.user).subscribe((data) => {console.log(data)});
+    this.router.navigate(['reset-password']).then(() => {
       window.location.reload();
     });
   }

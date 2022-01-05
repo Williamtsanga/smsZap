@@ -36,7 +36,7 @@ export class MessagesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.MessageService.getMessages().subscribe((messages) => {this.messages = messages})
+    this.MessageService.getMessages().subscribe((data) => {console.log(data)})
     this.dataSource = new MatTableDataSource(this.messages);
   }
 

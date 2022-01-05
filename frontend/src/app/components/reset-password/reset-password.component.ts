@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { ResetInterface } from '../../reset-interface';
 import {Router} from "@angular/router"
+import { UserInterface } from 'src/app/user-interface';
 
 @Component({
   selector: 'app-reset-password',
@@ -14,9 +14,10 @@ export class ResetComponent implements OnInit {
   
   password: string = '';
   email: string ='';
-  user: ResetInterface = {
+  user: UserInterface = {
+    username: '',
     password: '',
-    email:''
+    email: ''
   };
   
   constructor(private userService: UserService, private router: Router) { }
@@ -36,7 +37,7 @@ export class ResetComponent implements OnInit {
 
     this.user.email = this.email;
     this.user.password = this.password;
-    this.userService.Reset(this.user).subscribe((user) => {console.log(user.username)});
+    this.userService.Reset(this.user).subscribe((data) => {console.log(data)});
     this.router.navigate(['']).then(() => {
       window.location.reload();
     });
