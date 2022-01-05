@@ -39,8 +39,8 @@ export const register =  (infos : userType , callback : (newId:ObjectId) => void
 export const getAllMessages = async (userId:string) => {
     return await dbConnection.collection('messages').find({userId}).toArray();
   }
-export const sendSMS = async (userId:string,contactId:string,contact:string,message:string) => {
-    dbConnection.collection('messages').insertOne({userId,contactId,contact,message,createdAt: new Date().getTime()});
+export const sendSMS = async (userId:string,contact:string,message:string) => {
+    dbConnection.collection('messages').insertOne({userId,contact,message,createdAt: new Date().getTime()});
   }
 
 

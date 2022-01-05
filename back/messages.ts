@@ -21,11 +21,11 @@ router.get('/all' ,async (req,res) => {
 })
 router.post('/send', async (req,res) => {
     const {_token} = req.cookies
-    const {message,contact,contactId} = req.body
+    const {message,contact} = req.body
     try {
         const decode = jwt.verify(_token,process.env.SECRET) as jwt.JwtPayload
         try {
-          sendSMS(decode.id,contactId,contact,message);
+          sendSMS(decode.id,contact,message);
           res.status(201).send({message:"done"})
         } catch (err) {
           console.error(`Something went wrong:`);
